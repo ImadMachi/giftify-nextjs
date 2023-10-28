@@ -13,21 +13,39 @@ const HeaderBottom = ({ handleOpenMenu }: any) => {
                 <span className="font-bold text-sm">All</span>
             </div> */}
 				<div className="flex flex-grow max-md:overflow-x-scroll scrollbar-hide text-sm whitespace-nowrap ">
-					<ul className="flex space-x-4 justify-center w-full">
+					<ul className="flex space-x-4 justify-center w-full scrollbar-hide">
 						<li className="">
-							<Link href="">Deals</Link>
+							<Link href="">New</Link>
 						</li>
 						<li className="">
-							<Link href="">Customer Service</Link>
+							<Link href="">Holiday</Link>
 						</li>
 						<li className="">
-							<Link href="">Registery</Link>
+							<Link href="">Birthday</Link>
 						</li>
 						<li className="">
-							<Link href="">Gift Cards</Link>
+							<Link href="">Gifts</Link>
 						</li>
 						<li className="">
-							<Link href="">Electoronics</Link>
+							<Link href="">Home</Link>
+						</li>
+						<li className="">
+							<Link href="">Kitchen & Bar</Link>
+						</li>
+						<li className="">
+							<Link href="">Jewelry</Link>
+						</li>
+						<li className="">
+							<Link href="">Women</Link>
+						</li>
+						<li className="">
+							<Link href="">Men</Link>
+						</li>
+						<li className="">
+							<Link href="">Kids</Link>
+						</li>
+						<li className="">
+							<Link href="">Fun</Link>
 						</li>
 					</ul>
 				</div>

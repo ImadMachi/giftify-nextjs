@@ -8,22 +8,21 @@ import HomeProductSwiper from "@/components/Home/HomeProductSwiper";
 import CategoriesProduct from "@/components/Home/CategoriesProduct/CategoriesProducts";
 import db from "../utils/db";
 
-export default function Home({ products }: any) {
+export default function Home({ products, categories }: any) {
 	return (
 		<>
 			<Header title="Full Amazon Clone React" />
 			<main className="max-w-screen-2xl mx-auto bg-gray-100">
 				<CarouselContainer />
-				<CategoriesProduct products={products} />
+				<CategoriesProduct products={products} categories={categories} />
 				<div className="z-10 relative">
-					<HomeProductSwiper products={products} category="women clothing" />
-					<HomeProductSwiper products={products} category="shoes" />
-					<HomeProductSwiper products={products} category="Beauty" />
-					<HomeProductSwiper products={products} category="Kids" />
+					{categories.map((category: any) => (
+						<HomeProductSwiper key={category._id} products={products} category={category.slug} />
+					))}
 				</div>
 			</main>
 			<Footer />
-			<MenuSideBar />
+			{/* <MenuSideBar /> */}
 		</>
 	);
 }
@@ -31,10 +30,12 @@ export default function Home({ products }: any) {
 export const getServerSideProps = async (context: any) => {
 	db.connectDb();
 	const products = await Product.find().populate({ path: "category", model: Category }).sort({ updatedAt: -1 }).lean();
+	const categories = await Category.find().lean();
 	db.disconnectDb();
 	return {
 		props: {
 			products: JSON.parse(JSON.stringify(products)),
+			categories: JSON.parse(JSON.stringify(categories)),
 		},
 	};
 };
