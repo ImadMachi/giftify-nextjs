@@ -28,7 +28,7 @@ export const getServerSideProps = async (context: any) => {
 	const { query } = context;
 	const slug = decodeURIComponent(query.slug);
 
-	const style = query.style || 0;
+	const style = 0;
 	const size = query.size || 0;
 	db.connectDb();
 	let product = await Product.findOne({ slug })

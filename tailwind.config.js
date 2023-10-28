@@ -12,8 +12,8 @@ module.exports = {
 		extend: {
 			colors: {
 				amazon: {
-					blue_light: "#232f3e",
-					blue_dark: "#131921",
+					blue_light: "#145369",
+					blue_dark: "#0b2d39",
 					orange: "#febd69",
 				},
 			},
