@@ -11,7 +11,7 @@ import db from "../utils/db";
 export default function Home({ products, categories }: any) {
 	return (
 		<>
-			<Header title="Full Amazon Clone React" />
+			<Header title="Giftify Home Page" />
 			<main className="max-w-screen-2xl mx-auto bg-gray-100">
 				<CarouselContainer />
 				<CategoriesProduct products={products} categories={categories} />

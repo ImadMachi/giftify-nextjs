@@ -1,9 +1,13 @@
 export const similarProducts = [
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681651478/product%20images/gls9vikondli9ri46biv.webp",
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681651962/product%20images/ma7zxeji5pzfztm8okfb.webp",
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681651207/product%20images/anhjaw8ioeepbptczlkp.webp",
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681652821/product%20images/nyhdalxuekawi3fhgsrl.webp",
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681652825/product%20images/bm5f6zxizmmcqnju868s.webp",
-    "https://res.cloudinary.com/dpuuwsnhy/image/upload/v1681652823/product%20images/hjaw0cbpwahl0hiek2wo.webp",
+    "https://m.media-amazon.com/images/I/61L5QgPvgqL._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/51Msq-8j2QL._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/61SJu997CCL._AC_UF1000,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/61TLLpfUoCL._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/61sFUDK3OcL._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/71X+8lqOzeL._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/81HZAfCGZ5L._AC_UF1000,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/81zKcC5wJ6L._AC_UF894,1000_QL80_.jpg",
+    "https://m.media-amazon.com/images/I/81MrGJeQBvL._AC_UF894,1000_QL80_.jpg",
+
     
 ]
