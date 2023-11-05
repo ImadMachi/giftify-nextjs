@@ -7,12 +7,12 @@ async function connectDb(){
         return;
     }
 
-    if(mongoose.connection.lentgh > 0) {
+    if (mongoose.connection.length > 0) {
         connection.isConnected = mongoose.connections[0].readyState;
-        if(connection.isConnected === 1 ) {
-            console.log("use previous connection to the database");
-            return;
-        }
+        if (connection.isConnected === 1) {
+            console.log("Use previous connection to the database");
+        
+    }
         await mongoose.disconnect();
     }
 
