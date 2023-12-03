@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const { ObjectId } = mongoose.Schema;
 
 const OrderSchema = new mongoose.Schema(
@@ -128,8 +129,18 @@ const OrderSchema = new mongoose.Schema(
     {
         timestamps: true,
     }
+
 );
 
+
+OrderSchema.methods.deleteOrderById = async function(order) {
+    return this.deleteOne({_id: order._id}).exec();
+};
+OrderSchema.statics.updateOrder =  function(order) {
+   
+    return  this.updateOne({ _id: order._id }, 
+        { $set: { paymentMethod: order.paymentMethod, status:order.status } });
+};
 
 const Order = mongoose.models?.Order  || mongoose.model("Order", OrderSchema);
 

@@ -10,29 +10,23 @@ import slugify from "slugify";
 import { useRouter } from "next/dist/client/router";
 import { PauseIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { ClassNames } from "@emotion/react";
-
+import axios from "axios";
+const orderInstance = new Order();
 
 const Orders = ({ user, tab, orders }: any) => {
     const router = useRouter();
-const handleClickk = async (orderId) => {
+const handleClickk =  (orderId) => {
     try {
-        const deletedOrder = await deleteOrders(orderId);
+        const deletedOrder =  deleteOrders(orderId);
         console.log('id importer',orderId)
         console.log('Ordre supprimé :', deletedOrder);
         // Faire quelque chose après la suppression de l'ordre
     } catch (error) {
         console.error('Erreur lors de la suppression de l\'ordre :', error);
     }
+
 };
 
-    const update = (orderId) => {
-        deleteOrders(orderId)
-            .then(deletedOrder => {
-                console.log('id importer',orderId)
-                console.log('Ordre supprimé :', deletedOrder);
-            })
-
-    };
     return (
         < >
             <Layout user={user} tab={tab} title={`${user.name}'s Orders`} ClassNames="flex flex-col md:flex-row">
@@ -62,7 +56,6 @@ const handleClickk = async (orderId) => {
                                 <td>View</td>
                                 <td>update</td>
                                 <td>delete</td>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -92,9 +85,10 @@ const handleClickk = async (orderId) => {
                                     </td>
                                     <td>{order.status}</td>
                                     <td><Link href={`/order/${order._id}`}><EyeIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></Link></td>
-                                    <td><a  ><PencilIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></a></td>
-                                    <td><a  onClick={ ()=>handleClickk(order._id)}><TrashIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></a></td>
-
+                                    <td><Link   href={`/order/update/${order._id}`}><PencilIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></Link></td>
+                                    
+                                    <td><a  onClick={ ()=> deleteOrders(order)}><TrashIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></a></td>
+                                 
                                 </tr>
                             ))}
                         </tbody>
@@ -111,8 +105,10 @@ export default Orders;
 
    // Fonction pour supprimer un ordre par son ID
    const deleteOrders = async (orderId) => {
-    try {        const deletedOrder = await Order.findOneAndDelete({_id: orderId });
-        return deletedOrder;
+
+    try {      
+         let  deletedOrderconst  = axios.delete("/api/order/create",{data:{orderId}});
+        return deletedOrderconst;
     } catch (error) {
         // Gérer les erreurs
         console.error("Erreur lors de la suppression de l'ordre :", error);
