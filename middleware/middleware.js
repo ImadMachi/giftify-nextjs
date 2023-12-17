@@ -11,7 +11,7 @@ export async function middleware(req) {
     });
 
     
-
+/*
     if(pathname == "/checkout") {
         if(!session) return NextResponse.redirect(`${origin}`);
     }
@@ -25,6 +25,7 @@ export async function middleware(req) {
         if(!session) return NextResponse.redirect(`${origin}`);
         if( session.role !== "admin" ) return NextResponse.redirect(`${origin}`);
     }
+    */
 
 
 }

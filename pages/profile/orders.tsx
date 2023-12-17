@@ -5,18 +5,34 @@ import { getSession } from "next-auth/react";
 import { ordersLinks } from "./../../components/profile/sidebar/ordersLinks";
 import Link from "next/link";
 import Image from "next/image";
-import { CheckBadgeIcon, EyeIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import { CheckBadgeIcon, EyeIcon, XCircleIcon  } from "@heroicons/react/24/solid";
 import slugify from "slugify";
 import { useRouter } from "next/dist/client/router";
-
+import { PauseIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { ClassNames } from "@emotion/react";
+import axios from "axios";
+const orderInstance = new Order();
 
 const Orders = ({ user, tab, orders }: any) => {
     const router = useRouter();
+const handleClickk =  (orderId) => {
+    try {
+        const deletedOrder =  deleteOrders(orderId);
+        console.log('id importer',orderId)
+        console.log('Ordre supprimé :', deletedOrder);
+        // Faire quelque chose après la suppression de l'ordre
+    } catch (error) {
+        console.error('Erreur lors de la suppression de l\'ordre :', error);
+    }
+
+};
+
     return (
-        <>
-            <Layout user={user} tab={tab} title={`${user.name}'s Orders`}>
-                <div className="text-center">
-                    <h2 className="text-4xl font-bold mb-6">My Orders</h2>
+        < >
+            <Layout user={user} tab={tab} title={`${user.name}'s Orders`} ClassNames="flex flex-col md:flex-row">
+                <div className="text-center ">
+                   
+                   <div> <h2 className="text-4xl font-bold mb-6">My Orders</h2>
                     <nav>
                         <ul className="flex">
                             {ordersLinks.map((order: any, i: any) => (
@@ -26,6 +42,7 @@ const Orders = ({ user, tab, orders }: any) => {
                             ))}
                         </ul>
                     </nav>
+                    </div>
 
                     <table className="table_order">
                         <thead>
@@ -37,6 +54,8 @@ const Orders = ({ user, tab, orders }: any) => {
                                 <td>Paid</td>
                                 <td>Status</td>
                                 <td>View</td>
+                                <td>update</td>
+                                <td>delete</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +85,10 @@ const Orders = ({ user, tab, orders }: any) => {
                                     </td>
                                     <td>{order.status}</td>
                                     <td><Link href={`/order/${order._id}`}><EyeIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></Link></td>
+                                    <td><Link   href={`/order/update/${order._id}`}><PencilIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></Link></td>
+                                    
+                                    <td><a  onClick={ ()=> deleteOrders(order)}><TrashIcon className="w-8 h-8 fill-slate-500 cursor-pointer hover:fill-slate-800" /></a></td>
+                                 
                                 </tr>
                             ))}
                         </tbody>
@@ -78,6 +101,20 @@ const Orders = ({ user, tab, orders }: any) => {
 
 export default Orders;
 
+
+
+   // Fonction pour supprimer un ordre par son ID
+   const deleteOrders = async (orderId) => {
+
+    try {      
+         let  deletedOrderconst  = axios.delete("/api/order/create",{data:{orderId}});
+        return deletedOrderconst;
+    } catch (error) {
+        // Gérer les erreurs
+        console.error("Erreur lors de la suppression de l'ordre :", error);
+        
+    }
+};
 export async function getServerSideProps(context: any) {
     db.connectDb();
     const { query } = context;
@@ -92,7 +129,8 @@ export async function getServerSideProps(context: any) {
         };
     }
     // --------------------------------
-    const filter = query.q.split("__")[1];
+    const filter = query.q ? query.q.split("__")[1] : null; // Vérifier si query.q existe avant de diviser
+
     let orders = [];
 
     if (!filter) {
@@ -112,6 +150,7 @@ export async function getServerSideProps(context: any) {
             .sort({ createdAt: -1 })
             .lean();
     }
+    db.disconnectDb();
     // console.log("filter", filter, "orders > ", orders);
     return {
         props: {

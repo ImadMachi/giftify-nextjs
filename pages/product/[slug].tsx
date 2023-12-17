@@ -28,7 +28,7 @@ export const getServerSideProps = async (context: any) => {
 	const { query } = context;
 	const slug = decodeURIComponent(query.slug);
 
-	const style = query.style || 0;
+	const style = 0;
 	const size = query.size || 0;
 	db.connectDb();
 	let product = await Product.findOne({ slug })
@@ -36,6 +36,7 @@ export const getServerSideProps = async (context: any) => {
 		.populate({ path: "subCategories", model: SubCategory })
 		.populate({ path: "reviews.reviewBy", model: User })
 		.lean();
+		console.log(product);
 	let subProduct = product.subProducts[style];
 	let prices = subProduct.sizes.map((s: any) => s.price).sort((a: any, b: any) => a - b);
 
