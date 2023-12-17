@@ -99,6 +99,7 @@ const CreateProduct = ({
 					color: product.color.color,
 					image: style_img,
 				},
+			
 			});
 			setProduct(initialProduct);
 			setImages([]);

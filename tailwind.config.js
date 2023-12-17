@@ -14,7 +14,7 @@ module.exports = {
 				amazon: {
 					blue_light: "#232f3e",
 					blue_dark: "#131921",
-					orange: "#febd69",
+					orange: "#0ad5d5",
 				},
 			},
 		},

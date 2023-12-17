@@ -21,7 +21,7 @@ const Footer = () => {
 							<Link href="/">Blog</Link>
 						</li>
 						<li>
-							<Link href="/">About Amazon</Link>
+							<Link href="/">About Giftify</Link>
 						</li>
 						<li>
 							<Link href="/">Investor Relations</Link>
@@ -38,9 +38,7 @@ const Footer = () => {
 				<div className="link-footer">
 					<h5>Let Us Help You</h5>
 					<ul>
-						<li>
-							<Link href="/">Amazon and COVID-19</Link>
-						</li>
+					
 						<li>
 							<Link href="/">Your Account</Link>
 						</li>
@@ -57,7 +55,7 @@ const Footer = () => {
 							<Link href="/">Manage Your Content and Devices</Link>
 						</li>
 						<li>
-							<Link href="/">Amazon Assistant</Link>
+							<Link href="/">Giftify Assistant</Link>
 						</li>
 						<li>
 							<Link href="/">Help</Link>

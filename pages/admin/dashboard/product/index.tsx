@@ -3,13 +3,18 @@ import Category from "@/models/Category";
 import Product from "@/models/Product";
 import db from "@/utils/db";
 import AllProduct from "@/components/admin/product/index";
+import { useState } from "react";
+
 
 const Products = ({ products }: any) => {
     // console.log('products: ', products)
+    const [productList, setProductList] = useState(products);
+
     return (
         <Layout>
-            <AllProduct products={products} />
+            <AllProduct products={productList} setProducts={setProductList}  />
         </Layout>
+
     );
 };
 

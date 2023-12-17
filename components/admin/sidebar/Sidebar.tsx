@@ -111,6 +111,19 @@ const Sidebar = () => {
                             className={`flex items-center p-2 rounded hover:bg-slate-200 transition duration-300 ${
                                 route === "products" ? "bg-slate-300" : ""
                             }`}
+                            href="/admin/dashboard/packs"
+                        >
+                            <RectangleGroupIcon className="w-6 h-6" />
+                            <span className="show pl-3 text-slate-600">
+                                Packs
+                            </span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            className={`flex items-center p-2 rounded hover:bg-slate-200 transition duration-300 ${
+                                route === "products" ? "bg-slate-300" : ""
+                            }`}
                             href="/admin/dashboard/product/create"
                         >
                             <RectangleGroupIcon className="w-6 h-6" />

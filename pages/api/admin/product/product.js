@@ -61,16 +61,45 @@ handler.post(async (req, res) => {
 	}
 });
 
-// handler.get( async (req, res) => {
-//     try {
+handler.delete(async (req, res) => {
+	
+    try {
+        db.connectDb();
+        const { name } = req.query; // Assuming name is used as the identifier
 
-//         db.connectDb();
-//         const data = await Product.find
+        // Validate name if needed
 
-//         db.disconnectDb();
-//     } catch (error) {
-//         res.status(500).json({ message: `error in all product ${error.message }`})
-//     }
-// })
+        const existingProduct = await Product.findOne({ name });
+        if (!existingProduct) {
+            return res.status(404).json({ message: "Product not found!" });
+        }
+
+        const deletedProduct = await Product.findOneAndDelete({ name });
+
+        if (!deletedProduct) {
+            return res.status(404).json({ message: "Product not found!" });
+        }
+
+        res.status(200).json({ message: "Product deleted successfully." });
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        res.status(500).json({ message: error.message });
+    } finally {
+        db.disconnectDb();
+    }
+});
+
+// Define the GET route
+handler.get(async (req, res) => {
+    try {
+        db.connectDb();
+        const data = await Product.find(); // Invoke the function to fetch data
+        res.status(200).json(data); // Send the data in the response
+    } catch (error) {
+        res.status(500).json({ message: `Error in all product ${error.message}` });
+    } finally {
+        db.disconnectDb();
+    }
+});
 
 export default handler;
